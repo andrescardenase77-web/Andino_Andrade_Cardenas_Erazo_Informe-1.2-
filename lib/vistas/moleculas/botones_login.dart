@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../atomos/boton_primario.dart';
 import '../atomos/boton_secundario.dart';
 
-// Molecula: conjunto de botones para procesar o limpiar el formulario
 class BotonesLogin extends StatelessWidget {
   final VoidCallback onIniciarSesion;
   final VoidCallback onLimpiar;

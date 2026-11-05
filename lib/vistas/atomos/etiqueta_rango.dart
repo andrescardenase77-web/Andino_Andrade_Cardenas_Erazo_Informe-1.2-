@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Atomo: etiqueta visual (badge) para representar el rango tarifario de consumo
 class EtiquetaRango extends StatelessWidget {
   final String rango;
 

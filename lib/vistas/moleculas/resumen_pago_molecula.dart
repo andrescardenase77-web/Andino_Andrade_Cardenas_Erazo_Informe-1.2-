@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../modelos/consumo_modelo.dart';
 import '../atomos/fila_detalle.dart';
 
-// Molecula: seccion con el desglose del consumo, rubros y total a pagar
 class ResumenPagoMolecula extends StatelessWidget {
   final ConsumoModelo modelo;
 

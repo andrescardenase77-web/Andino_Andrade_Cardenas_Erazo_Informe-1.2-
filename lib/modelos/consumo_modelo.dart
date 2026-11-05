@@ -1,24 +1,12 @@
-<<<<<<< HEAD
-// Modelo que representa la informacion del consumo de agua y el calculo de valores
-=======
-// Modelo que representa los datos de consumo de agua potable y su calculo detallado
->>>>>>> 2bf45e432b36945a1a5e7bb2b877a67304d16b90
 class ConsumoModelo {
   final String numeroCuenta;
   final String nombreCliente;
   final double lecturaAnterior;
   final double lecturaActual;
-<<<<<<< HEAD
   final String tipoConsumidor;
   final double consumo;
   final double tarifaM3;
   final String rangoConsumo;
-=======
-  final String tipoConsumidor; // 'Residencial' o 'Comercial'
-  final double consumoM3;
-  final String rangoTarifario;
-  final double tarifaPorM3;
->>>>>>> 2bf45e432b36945a1a5e7bb2b877a67304d16b90
   final double valorConsumo;
   final double cargoFijo;
   final double subtotal;
@@ -32,15 +20,9 @@ class ConsumoModelo {
     required this.lecturaAnterior,
     required this.lecturaActual,
     required this.tipoConsumidor,
-<<<<<<< HEAD
     required this.consumo,
     required this.tarifaM3,
     required this.rangoConsumo,
-=======
-    required this.consumoM3,
-    required this.rangoTarifario,
-    required this.tarifaPorM3,
->>>>>>> 2bf45e432b36945a1a5e7bb2b877a67304d16b90
     required this.valorConsumo,
     required this.cargoFijo,
     required this.subtotal,
@@ -48,10 +30,11 @@ class ConsumoModelo {
     required this.recargo,
     required this.totalPagar,
   });
-<<<<<<< HEAD
-=======
 
-  // Metodo para transformar el modelo a un Map (util para navegacion con argumentos)
+  double get consumoM3 => consumo;
+  String get rangoTarifario => rangoConsumo;
+  double get tarifaPorM3 => tarifaM3;
+
   Map<String, dynamic> toMap() {
     return {
       'numeroCuenta': numeroCuenta,
@@ -59,9 +42,9 @@ class ConsumoModelo {
       'lecturaAnterior': lecturaAnterior,
       'lecturaActual': lecturaActual,
       'tipoConsumidor': tipoConsumidor,
-      'consumoM3': consumoM3,
-      'rangoTarifario': rangoTarifario,
-      'tarifaPorM3': tarifaPorM3,
+      'consumo': consumo,
+      'tarifaM3': tarifaM3,
+      'rangoConsumo': rangoConsumo,
       'valorConsumo': valorConsumo,
       'cargoFijo': cargoFijo,
       'subtotal': subtotal,
@@ -71,17 +54,26 @@ class ConsumoModelo {
     };
   }
 
-  // Factory para reconstruir el modelo a partir de un Map
   factory ConsumoModelo.fromMap(Map<String, dynamic> map) {
+    final consumoVal = (map['consumo'] as num?)?.toDouble() ??
+        (map['consumoM3'] as num?)?.toDouble() ??
+        0.0;
+    final tarifaVal = (map['tarifaM3'] as num?)?.toDouble() ??
+        (map['tarifaPorM3'] as num?)?.toDouble() ??
+        0.0;
+    final rangoVal = (map['rangoConsumo'] as String?) ??
+        (map['rangoTarifario'] as String?) ??
+        '';
+
     return ConsumoModelo(
       numeroCuenta: map['numeroCuenta'] ?? '',
       nombreCliente: map['nombreCliente'] ?? '',
       lecturaAnterior: (map['lecturaAnterior'] as num?)?.toDouble() ?? 0.0,
       lecturaActual: (map['lecturaActual'] as num?)?.toDouble() ?? 0.0,
       tipoConsumidor: map['tipoConsumidor'] ?? 'Residencial',
-      consumoM3: (map['consumoM3'] as num?)?.toDouble() ?? 0.0,
-      rangoTarifario: map['rangoTarifario'] ?? '',
-      tarifaPorM3: (map['tarifaPorM3'] as num?)?.toDouble() ?? 0.0,
+      consumo: consumoVal,
+      tarifaM3: tarifaVal,
+      rangoConsumo: rangoVal,
       valorConsumo: (map['valorConsumo'] as num?)?.toDouble() ?? 0.0,
       cargoFijo: (map['cargoFijo'] as num?)?.toDouble() ?? 0.0,
       subtotal: (map['subtotal'] as num?)?.toDouble() ?? 0.0,
@@ -90,5 +82,4 @@ class ConsumoModelo {
       totalPagar: (map['totalPagar'] as num?)?.toDouble() ?? 0.0,
     );
   }
->>>>>>> 2bf45e432b36945a1a5e7bb2b877a67304d16b90
 }

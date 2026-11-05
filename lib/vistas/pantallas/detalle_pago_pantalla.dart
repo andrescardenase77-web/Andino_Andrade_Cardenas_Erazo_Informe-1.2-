@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../modelos/consumo_modelo.dart';
 import '../organismos/tarjeta_detalle_pago.dart';
 
-// Pantalla 3: Muestra el detalle completo de pago y resultado de la consulta
 class DetallePagoPantalla extends StatelessWidget {
   const DetallePagoPantalla({super.key});
 

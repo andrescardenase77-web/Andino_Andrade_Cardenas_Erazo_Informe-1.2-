@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Atomo: campo de contrasena con icono para alternar visibilidad
 class CampoContrasena extends StatelessWidget {
   final String etiqueta;
   final TextEditingController controller;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Atomo: campo de seleccion desplegable con estilo personalizado
 class CampoDesplegable extends StatelessWidget {
   final String etiqueta;
   final String valorActual;
@@ -20,7 +19,7 @@ class CampoDesplegable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
-      value: valorActual,
+      initialValue: valorActual,
       decoration: InputDecoration(
         labelText: etiqueta,
         prefixIcon: icono != null ? Icon(icono) : null,

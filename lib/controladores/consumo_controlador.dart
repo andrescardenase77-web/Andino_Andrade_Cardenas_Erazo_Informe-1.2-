@@ -1,35 +1,21 @@
 import '../modelos/consumo_modelo.dart';
 
-<<<<<<< HEAD
-// Controlador para gestionar la logica del calculo de consumo de agua potable
 class ConsumoControlador {
-  // Metodo para realizar los calculos segun lecturas, tipo y rangos de consumo
-  ConsumoModelo calcularPago({
-=======
-// Controlador para gestionar las validaciones y los calculos de consumo de agua potable
-class ConsumoControlador {
-  // Constantes de tarifas segun rango de consumo y tipo de consumidor
-  // Rango 1: 0 a 15 m3 (Tarifa basica)
-  static const double tarifaResidencialBasica = 0.35;
-  static const double tarifaComercialBasica = 0.50;
+  static const double tarifaResidencialBasica = 0.50;
+  static const double tarifaComercialBasica = 0.80;
 
-  // Rango 2: 16 a 30 m3 (Tarifa intermedia)
-  static const double tarifaResidencialIntermedia = 0.60;
-  static const double tarifaComercialIntermedia = 0.85;
+  static const double tarifaResidencialIntermedia = 0.75;
+  static const double tarifaComercialIntermedia = 1.20;
 
-  // Rango 3: mas de 30 m3 (Tarifa superior)
-  static const double tarifaResidencialSuperior = 0.95;
-  static const double tarifaComercialSuperior = 1.30;
+  static const double tarifaResidencialSuperior = 1.10;
+  static const double tarifaComercialSuperior = 1.80;
 
-  // Cargos fijos por infraestructura segun tipo de consumidor
   static const double cargoFijoResidencial = 1.50;
   static const double cargoFijoComercial = 3.00;
 
-  // Porcentajes de recargo
-  static const double recargoComercial = 0.05; // 5% por tarifa comercial
-  static const double recargoExcesoConsumo = 0.03; // 3% adicional si supera 30 m3
+  static const double recargoComercial = 10.0;
+  static const double recargoResidencial = 5.0;
 
-  // Metodo para validar los datos ingresados en el formulario
   String? validarEntradas({
     required String numeroCuenta,
     required String nombreCliente,
@@ -75,7 +61,13 @@ class ConsumoControlador {
     return null;
   }
 
-  // Metodo para determinar la tarifa por m3 segun rango y tipo
+  String? validarLecturas(double anterior, double actual) {
+    if (actual < anterior) {
+      return 'La lectura actual no puede ser menor que la lectura anterior.';
+    }
+    return null;
+  }
+
   double obtenerTarifaPorM3(double consumo, String tipoConsumidor) {
     final bool esComercial = tipoConsumidor.toLowerCase() == 'comercial';
 
@@ -88,113 +80,44 @@ class ConsumoControlador {
     }
   }
 
-  // Metodo para obtener el nombre descriptivo del rango tarifario
   String obtenerRangoTarifario(double consumo) {
     if (consumo <= 15.0) {
-      return 'Básica (0 a 15 m³)';
+      return 'Básica (0 - 15 m³)';
     } else if (consumo <= 30.0) {
-      return 'Intermedia (16 a 30 m³)';
+      return 'Intermedia (16 - 30 m³)';
     } else {
-      return 'Superior (más de 30 m³)';
+      return 'Superior (> 30 m³)';
     }
   }
 
-  // Metodo para obtener el cargo fijo correspondiente
   double obtenerCargoFijo(String tipoConsumidor) {
     return tipoConsumidor.toLowerCase() == 'comercial'
         ? cargoFijoComercial
         : cargoFijoResidencial;
   }
 
-  // Metodo para calcular el porcentaje de recargo acumulado
   double calcularPorcentajeRecargo(double consumo, String tipoConsumidor) {
-    double porcentaje = 0.0;
-
-    // Recargo comercial
-    if (tipoConsumidor.toLowerCase() == 'comercial') {
-      porcentaje += recargoComercial;
-    }
-
-    // Recargo por exceso de consumo (>30 m3)
-    if (consumo > 30.0) {
-      porcentaje += recargoExcesoConsumo;
-    }
-
-    return porcentaje;
+    return tipoConsumidor.toLowerCase() == 'comercial'
+        ? recargoComercial
+        : recargoResidencial;
   }
 
-  // Metodo principal para procesar y calcular los valores de la planilla
-  ConsumoModelo procesarConsumo({
->>>>>>> 2bf45e432b36945a1a5e7bb2b877a67304d16b90
+  ConsumoModelo calcularPago({
     required String numeroCuenta,
     required String nombreCliente,
     required double lecturaAnterior,
     required double lecturaActual,
     required String tipoConsumidor,
   }) {
-<<<<<<< HEAD
-    // Calculo del consumo principal
     final double consumo = lecturaActual - lecturaAnterior;
+    final double tarifaM3 = obtenerTarifaPorM3(consumo, tipoConsumidor);
+    final String rangoConsumo = obtenerRangoTarifario(consumo);
+    final double cargoFijo = obtenerCargoFijo(tipoConsumidor);
+    final double porcentajeRecargo = calcularPorcentajeRecargo(consumo, tipoConsumidor);
 
-    double tarifaM3;
-    String rangoConsumo;
-    double cargoFijo;
-
-    // Asignacion de tarifas y cargos fijos segun rangos de consumo y tipo
-    if (consumo <= 15) {
-      rangoConsumo = 'Básica (0 - 15 m³)';
-      tarifaM3 = tipoConsumidor == 'Comercial' ? 0.80 : 0.50;
-      cargoFijo = tipoConsumidor == 'Comercial' ? 3.00 : 1.50;
-    } else if (consumo <= 30) {
-      rangoConsumo = 'Intermedia (16 - 30 m³)';
-      tarifaM3 = tipoConsumidor == 'Comercial' ? 1.20 : 0.75;
-      cargoFijo = tipoConsumidor == 'Comercial' ? 4.00 : 2.00;
-    } else {
-      rangoConsumo = 'Superior (> 30 m³)';
-      tarifaM3 = tipoConsumidor == 'Comercial' ? 1.80 : 1.10;
-      cargoFijo = tipoConsumidor == 'Comercial' ? 5.00 : 2.50;
-    }
-
-    // Porcentaje de recargo (por ejemplo alcantarillado o tasa administrativa)
-    final double porcentajeRecargo = tipoConsumidor == 'Comercial' ? 10.0 : 5.0;
-
-    // Calculos de rubros
     final double valorConsumo = consumo * tarifaM3;
     final double subtotal = valorConsumo + cargoFijo;
     final double recargo = subtotal * (porcentajeRecargo / 100);
-    final double totalPagar = subtotal + recargo;
-
-    return ConsumoModelo(
-      numeroCuenta: numeroCuenta,
-      nombreCliente: nombreCliente,
-      lecturaAnterior: lecturaAnterior,
-      lecturaActual: lecturaActual,
-      tipoConsumidor: tipoConsumidor,
-      consumo: consumo,
-      tarifaM3: tarifaM3,
-      rangoConsumo: rangoConsumo,
-=======
-    // 1. Calculo principal: Consumo = Lectura actual - Lectura anterior
-    final double consumoM3 = lecturaActual - lecturaAnterior;
-
-    // 2. Determinar tarifa por m3 y rango
-    final double tarifaM3 = obtenerTarifaPorM3(consumoM3, tipoConsumidor);
-    final String rango = obtenerRangoTarifario(consumoM3);
-
-    // 3. Valor consumo = Consumo * tarifa por m3
-    final double valorConsumo = consumoM3 * tarifaM3;
-
-    // 4. Cargo fijo
-    final double cargoFijo = obtenerCargoFijo(tipoConsumidor);
-
-    // 5. Subtotal = Valor consumo + Cargo fijo
-    final double subtotal = valorConsumo + cargoFijo;
-
-    // 6. Recargo = Subtotal * porcentaje de recargo
-    final double porcentajeRecargo = calcularPorcentajeRecargo(consumoM3, tipoConsumidor);
-    final double recargo = subtotal * porcentajeRecargo;
-
-    // 7. Total a pagar = Subtotal + Recargo
     final double totalPagar = subtotal + recargo;
 
     return ConsumoModelo(
@@ -203,10 +126,9 @@ class ConsumoControlador {
       lecturaAnterior: lecturaAnterior,
       lecturaActual: lecturaActual,
       tipoConsumidor: tipoConsumidor,
-      consumoM3: consumoM3,
-      rangoTarifario: rango,
-      tarifaPorM3: tarifaM3,
->>>>>>> 2bf45e432b36945a1a5e7bb2b877a67304d16b90
+      consumo: consumo,
+      tarifaM3: tarifaM3,
+      rangoConsumo: rangoConsumo,
       valorConsumo: valorConsumo,
       cargoFijo: cargoFijo,
       subtotal: subtotal,
@@ -215,15 +137,20 @@ class ConsumoControlador {
       totalPagar: totalPagar,
     );
   }
-<<<<<<< HEAD
 
-  // Metodo para validar la coherencia de las lecturas ingresadas
-  String? validarLecturas(double anterior, double actual) {
-    if (actual < anterior) {
-      return 'La lectura actual no puede ser menor que la lectura anterior.';
-    }
-    return null;
+  ConsumoModelo procesarConsumo({
+    required String numeroCuenta,
+    required String nombreCliente,
+    required double lecturaAnterior,
+    required double lecturaActual,
+    required String tipoConsumidor,
+  }) {
+    return calcularPago(
+      numeroCuenta: numeroCuenta,
+      nombreCliente: nombreCliente,
+      lecturaAnterior: lecturaAnterior,
+      lecturaActual: lecturaActual,
+      tipoConsumidor: tipoConsumidor,
+    );
   }
-=======
->>>>>>> 2bf45e432b36945a1a5e7bb2b877a67304d16b90
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../controladores/consumo_controlador.dart';
 import '../organismos/formulario_consumo.dart';
 
-// Pantalla 2: Formulario principal para registrar el consumo de agua
 class RegistroConsumoPantalla extends StatefulWidget {
   const RegistroConsumoPantalla({super.key});
 
@@ -41,7 +40,6 @@ class _RegistroConsumoPantallaState extends State<RegistroConsumoPantalla> {
     super.dispose();
   }
 
-  // Metodo para limpiar los datos del formulario
   void limpiar() {
     cuentaController.clear();
     lecturaAnteriorController.clear();
@@ -51,14 +49,12 @@ class _RegistroConsumoPantallaState extends State<RegistroConsumoPantalla> {
     });
   }
 
-  // Metodo para validar los campos y calcular el valor a pagar
   void calcular() {
     final String cuenta = cuentaController.text.trim();
     final String cliente = clienteController.text.trim();
     final String anteriorTexto = lecturaAnteriorController.text.trim();
     final String actualTexto = lecturaActualController.text.trim();
 
-    // Validacion de campos vacios
     if (cuenta.isEmpty || cliente.isEmpty || anteriorTexto.isEmpty || actualTexto.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -69,7 +65,6 @@ class _RegistroConsumoPantallaState extends State<RegistroConsumoPantalla> {
       return;
     }
 
-    // Conversion numerica y validacion
     final double? anterior = double.tryParse(anteriorTexto);
     final double? actual = double.tryParse(actualTexto);
 
@@ -83,7 +78,6 @@ class _RegistroConsumoPantallaState extends State<RegistroConsumoPantalla> {
       return;
     }
 
-    // Validacion de coherencia de lecturas
     final String? errorLecturas = controlador.validarLecturas(anterior, actual);
     if (errorLecturas != null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -95,7 +89,6 @@ class _RegistroConsumoPantallaState extends State<RegistroConsumoPantalla> {
       return;
     }
 
-    // Calculo mediante el controlador
     final resultado = controlador.calcularPago(
       numeroCuenta: cuenta,
       nombreCliente: cliente,
@@ -104,7 +97,6 @@ class _RegistroConsumoPantallaState extends State<RegistroConsumoPantalla> {
       tipoConsumidor: tipoConsumidor,
     );
 
-    // Navegacion hacia la pantalla de detalle de pago
     Navigator.pushNamed(
       context,
       '/detalle',

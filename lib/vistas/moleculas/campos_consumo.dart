@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../atomos/campo_texto.dart';
 import '../atomos/campo_desplegable.dart';
 
-// Molecula: conjunto de campos de entrada para el registro del consumo de agua
 class CamposConsumo extends StatelessWidget {
   final TextEditingController cuentaController;
   final TextEditingController clienteController;

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../atomos/boton_primario.dart';
 import '../atomos/boton_secundario.dart';
 
-// Molecula: botones de accion para procesar el calculo o limpiar el formulario
 class BotonesOperacion extends StatelessWidget {
   final VoidCallback onCalcular;
   final VoidCallback onLimpiar;

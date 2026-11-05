@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../controladores/login_controlador.dart';
 import '../organismos/formulario_login.dart';
 
-// Pantalla principal para el inicio de sesion
 class LoginPantalla extends StatefulWidget {
   const LoginPantalla({super.key});
 
@@ -23,14 +22,12 @@ class _LoginPantallaState extends State<LoginPantalla> {
     super.dispose();
   }
 
-  // Metodo para alternar entre mostrar y ocultar la contrasena
   void alternarVisibilidad() {
     setState(() {
       ocultarContrasena = !ocultarContrasena;
     });
   }
 
-  // Metodo para limpiar los campos de texto
   void limpiarCampos() {
     usuarioController.clear();
     contrasenaController.clear();
@@ -39,12 +36,10 @@ class _LoginPantallaState extends State<LoginPantalla> {
     });
   }
 
-  // Metodo para validar y procesar el inicio de sesion
   void iniciarSesion() {
     final String usuario = usuarioController.text.trim();
     final String contrasena = contrasenaController.text.trim();
 
-    // Validacion de campos vacios
     if (usuario.isEmpty || contrasena.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -55,7 +50,6 @@ class _LoginPantallaState extends State<LoginPantalla> {
       return;
     }
 
-    // Validacion mediante el controlador
     final bool esValido = controlador.autenticar(usuario, contrasena);
 
     if (!esValido) {
@@ -68,7 +62,6 @@ class _LoginPantallaState extends State<LoginPantalla> {
       return;
     }
 
-    // Datos del usuario autenticado
     final usuarioDatos = controlador.obtenerUsuario(usuario, contrasena);
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -78,7 +71,6 @@ class _LoginPantallaState extends State<LoginPantalla> {
       ),
     );
 
-    // Navegacion hacia la pantalla principal
     Navigator.pushReplacementNamed(
       context,
       '/principal',

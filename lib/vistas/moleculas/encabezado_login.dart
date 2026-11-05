@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../atomos/logo_app.dart';
 import '../atomos/texto_titulo.dart';
 
-// Molecula: encabezado visual que incluye el logo y el titulo
 class EncabezadoLogin extends StatelessWidget {
   const EncabezadoLogin({super.key});
 

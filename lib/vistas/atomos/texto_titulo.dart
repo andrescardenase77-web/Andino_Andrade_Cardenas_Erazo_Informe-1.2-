@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Atomo: texto con estilo de titulo
 class TextoTitulo extends StatelessWidget {
   final String texto;
 

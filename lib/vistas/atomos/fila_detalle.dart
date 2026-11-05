@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Atomo: fila para mostrar una etiqueta y su correspondiente valor
 class FilaDetalle extends StatelessWidget {
   final String titulo;
   final String valor;

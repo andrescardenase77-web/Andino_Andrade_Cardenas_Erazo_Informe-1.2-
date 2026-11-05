@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../temas/tema_app.dart';
 
-// Atomo: selector interactivo para elegir entre consumidor Residencial y Comercial
 class SelectorTipoConsumidor extends StatelessWidget {
   final String valorSeleccionado;
   final ValueChanged<String> alCambiar;

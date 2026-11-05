@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../modelos/consumo_modelo.dart';
 import '../atomos/fila_detalle.dart';
 
-// Molecula: tarjeta contenedora con los datos generales del abonado/cliente
 class InfoClienteMolecula extends StatelessWidget {
   final ConsumoModelo modelo;
 

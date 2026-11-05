@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Atomo: boton principal con estilo elevado
 class BotonPrimario extends StatelessWidget {
   final String texto;
   final VoidCallback onPressed;

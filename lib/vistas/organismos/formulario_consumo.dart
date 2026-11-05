@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../moleculas/campos_consumo.dart';
 import '../moleculas/botones_operacion.dart';
 
-// Organismo: tarjeta que agrupa el titulo, los campos de consumo y los botones de accion
 class FormularioConsumo extends StatelessWidget {
   final TextEditingController cuentaController;
   final TextEditingController clienteController;

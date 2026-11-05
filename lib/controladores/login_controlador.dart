@@ -1,8 +1,6 @@
 import '../modelos/usuario_modelo.dart';
 
-// Controlador para gestionar la logica de inicio de sesion
 class LoginControlador {
-  // Lista de usuarios registrados de forma local
   final List<UsuarioModelo> usuarios = const [
     UsuarioModelo(
       usuario: 'admin',
@@ -16,7 +14,6 @@ class LoginControlador {
     ),
   ];
 
-  // Metodo para autenticar las credenciales ingresadas
   bool autenticar(String usuario, String contrasena) {
     for (final item in usuarios) {
       if (item.usuario.toLowerCase() == usuario.trim().toLowerCase() &&
@@ -27,7 +24,6 @@ class LoginControlador {
     return false;
   }
 
-  // Metodo para recuperar los datos del usuario si las credenciales son validas
   UsuarioModelo? obtenerUsuario(String usuario, String contrasena) {
     for (final item in usuarios) {
       if (item.usuario.toLowerCase() == usuario.trim().toLowerCase() &&

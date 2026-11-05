@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Atomo: campo de texto simple para ingreso de usuario o correo
 class CampoTexto extends StatelessWidget {
   final String etiqueta;
   final TextEditingController controller;

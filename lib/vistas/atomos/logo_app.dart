@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Atomo: icono representativo del servicio de agua
 class LogoApp extends StatelessWidget {
   const LogoApp({super.key});
 

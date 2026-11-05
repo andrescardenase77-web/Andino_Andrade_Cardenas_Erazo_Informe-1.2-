@@ -3,7 +3,6 @@ import '../moleculas/encabezado_login.dart';
 import '../moleculas/campos_login.dart';
 import '../moleculas/botones_login.dart';
 
-// Organismo: tarjeta completa que reune el encabezado, campos y botones
 class FormularioLogin extends StatelessWidget {
   final TextEditingController usuarioController;
   final TextEditingController contrasenaController;

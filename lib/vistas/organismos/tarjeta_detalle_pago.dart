@@ -5,7 +5,6 @@ import '../moleculas/resumen_pago_molecula.dart';
 import '../atomos/boton_primario.dart';
 import '../atomos/boton_secundario.dart';
 
-// Organismo: comprobante completo de la planilla de agua potable
 class TarjetaDetallePago extends StatelessWidget {
   final ConsumoModelo modelo;
   final VoidCallback onNuevaConsulta;

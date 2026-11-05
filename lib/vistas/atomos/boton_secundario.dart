@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Atomo: boton secundario con borde delineado
 class BotonSecundario extends StatelessWidget {
   final String texto;
   final VoidCallback onPressed;

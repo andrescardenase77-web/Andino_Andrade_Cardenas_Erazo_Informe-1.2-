@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../atomos/campo_texto.dart';
 import '../atomos/campo_contrasena.dart';
 
-// Molecula: conjunto de campos de entrada para el inicio de sesion
 class CamposLogin extends StatelessWidget {
   final TextEditingController usuarioController;
   final TextEditingController contrasenaController;
