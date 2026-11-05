@@ -12,6 +12,10 @@ class ResumenPagoMolecula extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double porcentajeMostrar = modelo.porcentajeRecargo <= 1.0
+        ? modelo.porcentajeRecargo * 100
+        : modelo.porcentajeRecargo;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -68,7 +72,7 @@ class ResumenPagoMolecula extends StatelessWidget {
           valor: '\$${modelo.subtotal.toStringAsFixed(2)}',
         ),
         FilaDetalle(
-          titulo: 'Recargo (${modelo.porcentajeRecargo.toStringAsFixed(0)}%):',
+          titulo: 'Recargo (${porcentajeMostrar.toStringAsFixed(0)}%):',
           valor: '\$${modelo.recargo.toStringAsFixed(2)}',
         ),
         const Divider(height: 24, thickness: 1.5),

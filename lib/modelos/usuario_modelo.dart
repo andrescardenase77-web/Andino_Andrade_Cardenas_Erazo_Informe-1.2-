@@ -1,4 +1,4 @@
-class UsuarioModelo {
+rclass UsuarioModelo {
   final String usuario;
   final String contrasena;
   final String nombre;

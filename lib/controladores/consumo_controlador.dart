@@ -1,20 +1,20 @@
 import '../modelos/consumo_modelo.dart';
 
 class ConsumoControlador {
-  static const double tarifaResidencialBasica = 0.50;
-  static const double tarifaComercialBasica = 0.80;
+  static const double tarifaResidencialBasica = 0.35;
+  static const double tarifaComercialBasica = 0.50;
 
-  static const double tarifaResidencialIntermedia = 0.75;
-  static const double tarifaComercialIntermedia = 1.20;
+  static const double tarifaResidencialIntermedia = 0.60;
+  static const double tarifaComercialIntermedia = 0.85;
 
-  static const double tarifaResidencialSuperior = 1.10;
-  static const double tarifaComercialSuperior = 1.80;
+  static const double tarifaResidencialSuperior = 0.95;
+  static const double tarifaComercialSuperior = 1.30;
 
   static const double cargoFijoResidencial = 1.50;
   static const double cargoFijoComercial = 3.00;
 
-  static const double recargoComercial = 10.0;
-  static const double recargoResidencial = 5.0;
+  static const double recargoComercial = 0.05;
+  static const double recargoExcesoConsumo = 0.03;
 
   String? validarEntradas({
     required String numeroCuenta,
@@ -97,9 +97,14 @@ class ConsumoControlador {
   }
 
   double calcularPorcentajeRecargo(double consumo, String tipoConsumidor) {
-    return tipoConsumidor.toLowerCase() == 'comercial'
-        ? recargoComercial
-        : recargoResidencial;
+    double porcentaje = 0.0;
+    if (tipoConsumidor.toLowerCase() == 'comercial') {
+      porcentaje += recargoComercial;
+    }
+    if (consumo > 30.0) {
+      porcentaje += recargoExcesoConsumo;
+    }
+    return porcentaje;
   }
 
   ConsumoModelo calcularPago({
@@ -117,7 +122,7 @@ class ConsumoControlador {
 
     final double valorConsumo = consumo * tarifaM3;
     final double subtotal = valorConsumo + cargoFijo;
-    final double recargo = subtotal * (porcentajeRecargo / 100);
+    final double recargo = subtotal * porcentajeRecargo;
     final double totalPagar = subtotal + recargo;
 
     return ConsumoModelo(
